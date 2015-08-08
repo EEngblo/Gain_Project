@@ -13,7 +13,7 @@ int ANSWER, SCORE=0;
 int sero =40, garo = 20;
 int angstrong = 1;
 
-int line_threshold = 2;
+int line_threshold = 1;
 
 boolean debug0 = true; // answer
 boolean debug1 = false; // first data
@@ -54,8 +54,8 @@ int[][] widtharray = // garo
 };
 
 int[] leftupbox = {0,0,0,0,0,0,0,0,0,0};
-int[] rightupline = {-2,-2,-2,-2,-1,2,2,-2,-2,-2};
-int[] leftupline = {-2,-2,-1,1,-2,-2,-2,1,-2,-2};
+int[] rightupline = {-2,-2,-2,-2,-2,2,2,-2,-2,-2};
+int[] leftupline = {-2,-2,-1,2,-2,-2,-2,2,-2,-2};
 int[] leftdownline = {-2,-2,-2,2,0,2,-2,2,-2,2};
 
 ////////////////////////////////////////////////////////////////////
