@@ -21,7 +21,7 @@ boolean lets_ang = true; // don't touch
 
 
 int[][] heightarray = // sero
-{{0,0,0,0,2,0,0,0,0}, //0
+{{0,0,0,1,2,1,0,0,0}, //0
  {0,0,0,0,1,0,0,0,0},
  {0,0,0,1,3,1,0,0,0}, //2
  {0,0,1,3,4,3,1,0,0},
@@ -332,12 +332,12 @@ void setup(){
       recolor(resizeimage,200);
       if(debug2) output.print(image_name+"_garo ");
       garotracing(resizeimage);
-      if(debug2) output.println();
+      if(debug3) output.println();
       if(debug2) output.print(image_name+"_sero ");
       serotracing(resizeimage);
-      if(debug2) output.println();
+      if(debug3) output.println();
       nnsort(compare_answer);
-      if(debug1||debug2) output.println();
+      if(debug1||debug2||debug3) output.println();
       resizeimage.save("final\\"+image_name_final);
       println(image_name_final+" done!");
       for(int k = 0; k<10; k++){
