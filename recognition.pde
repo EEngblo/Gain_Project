@@ -8,23 +8,17 @@ int[] compare_answer = new int[10];
 int ANSWER, SCORE=0;
 
 /////////////////////////////////////////////////////////
-/////////////////////// Settings //////////////////////////
 
 int sero =40, garo = 20;
 int angstrong = 1;
 
-int line_threshold = 2;
-
 boolean debug0 = true; // answer
 boolean debug1 = false; // first data
-boolean debug2 = false; // final
+boolean debug2 = true; // final
 boolean debug3 = false; // fiilzero
-boolean debugline = true; // line functions
 boolean lets_ang = true; // don't touch
 
 ///////////////////////////////////////////////////
-////////////////// Sample Number /////////////////////
-
 // 0,7,9 need classification
 
 int[][] heightarray = // sero
@@ -53,189 +47,13 @@ int[][] widtharray = // garo
  {0,0,0,1,2,1,0,0,0}  //9
 };
 
-int[] leftupbox = {0,0,0,0,0,0,0,0,0,0};
-int[] rightupline = {-2,-2,-2,-2,-1,2,2,-2,-2,-2};
-int[] leftupline = {-2,-2,-1,1,-2,-2,-2,1,-2,-2};
-int[] leftdownline = {-2,-2,-2,2,0,2,-2,2,-2,2};
-
-////////////////////////////////////////////////////////////////////
-////////////////////// Functions for Convenience ///////////////////
-
-int location(int Garo, int Sero){
-  return (Garo + Sero * (garo)); 
-}
-
-//////////////////////////////////////////////////////////////////
-/////////////////// Classification by Space ////////////////////// 
-
-// to classificaation 5,6 // 0,1,2,3,4,7,8,9
-void rightup_line(PImage img){
-  int seed_sero = sero / 4;
-  int seed_garo = garo / 2;
-  int answer = 0, loc;
-  boolean ang=true;
-  
-  for(int i = seed_sero; i>=sero/8; i--){
-     for(int j = seed_garo; j<garo; j++){
-       loc = location(j,i);
-       if(red(img.pixels[loc]) == 0){
-       ang = false;
-         break;
-       }
-     }
-     if(ang) answer++;
-     ang = true;
-  }
-  
-  
-  
-  for(int i = seed_sero; i<sero/3; i++){
-     for(int j = seed_garo; j<garo; j++){
-       loc = location(j,i);
-       if(red(img.pixels[loc]) == 0){
-         ang = false;
-         break;
-       }
-     }
-     if(ang) answer++;
-     ang = true;
-  }
-  
-  if(answer >= line_threshold){
-    if(debugline) output.println("rightupline_true");
-    for(int i = 0; i<10; i++){
-      compare_answer[i] += rightupline[i];
-    }
-  } else{
-    for(int i = 0; i<10; i++){
-      compare_answer[i] -= rightupline[i];
-    }
-  }
-  
-}
-
-void leftup_line(PImage img){
-  int seed_sero = sero / 4;
-  int seed_garo = garo / 2;
-  int answer = 0, loc;
-  boolean ang=true;
-  
-  for(int i = seed_sero; i>sero/8; i--){
-     for(int j = seed_garo; j>=0; j--){
-       loc = location(j,i);
-       if(red(img.pixels[loc]) == 0){
-        ang = false;
-         break;
-       }
-     }
-     if(ang) answer++;
-     ang = true;
-  }
-  
-  
-  for(int i = seed_sero; i<sero/3; i++){
-     for(int j = seed_garo; j>=0; j--){
-       loc = location(j,i);
-       if(red(img.pixels[loc]) == 0){
-         ang = false;
-         break;
-       }
-     }
-     if(ang) answer++;
-     ang = true;
-  }
-  
-  if(answer >= line_threshold){
-    if(debugline) output.println("leftupline_true");
-    for(int i = 0; i<10; i++){
-      compare_answer[i] += leftupline[i];
-    }
-  } else{
-    for(int i = 0; i<10; i++){
-      compare_answer[i] -= leftupline[i];
-    }
-  }
-  
-}
-
-void leftdown_line(PImage img){
-  int seed_sero = sero * 3 / 4;
-  int seed_garo = garo / 2;
-  int answer = 0, loc;
-  boolean ang=true;
-  
-  for(int i = seed_sero; i>sero*2/3; i--){
-     for(int j = seed_garo; j>=0; j--){
-       loc = location(j,i);
-       if(red(img.pixels[loc]) == 0){
-        ang = false;
-         break;
-       }
-     }
-     if(ang) answer++;
-     ang = true;
-  }
-  
-  
-  for(int i = seed_sero; i<sero*7/8; i++){
-     for(int j = seed_garo; j>=0; j--){
-       loc = location(j,i);
-       if(red(img.pixels[loc]) == 0){
-         ang = false;
-         break;
-       }
-     }
-     if(ang) answer++;
-     ang = true;
-  }
-  
-  if(answer >= line_threshold){
-    if(debugline) output.println("leftdownline_true");
-    for(int i = 0; i<10; i++){
-      compare_answer[i] += leftdownline[i];
-    }
-  } else{
-    for(int i = 0; i<10; i++){
-      compare_answer[i] -= leftdownline[i];
-    }
-  }
-  
-}
-
-void fill_leftupbox(PImage img){
-  int i, loc;
-  int answer = 0;
-  int seed_sero = sero / 4;
-  int seed_garo = garo / 4;
-  boolean ang = true;
-  
-  for(i = seed_sero; ang && i<sero ; i++){
-    for(int j = 0; j<garo ; j++){
-      loc = location(j,i);
-     
-      if(j < seed_garo && green(img.pixels[loc]) > 100){
-        //ang = false;
-        break;
-      }
-      
-      if(green(img.pixels[loc]) > 100){
-        img.pixels[loc] = color(0,255,0); 
-      }
-    }
-  }
-}
-
-
-////////////////////////////////////////////////////////////////////
-/////////////////// Classification by Lines //////////////////////
-
 void garotracing(PImage img){
   int[] widthimage = new int[sero];
   int ang, prev_ang;
   for(int i = 0; i<sero; i++){
     ang = 0; prev_ang=0;
     for(int j = 0; j<garo; j++){
-      int loc = location(j,i);
+      int loc = j+(i*garo);
       prev_ang = ang;
       if(red(img.pixels[loc]) == 0) ang = 1;
       else ang = 0;
@@ -253,7 +71,7 @@ void serotracing(PImage img){
   for(int i = 0; i<garo; i++){
     ang = 0; prev_ang=0;
     for(int j = 0; j<sero; j++){
-      int loc = location(i,j);
+      int loc = i+(j*garo);
       prev_ang = ang;
       if(red(img.pixels[loc]) == 0) ang = 1;
       else ang = 0;
@@ -434,10 +252,22 @@ void fillzero(int[] array, boolean sero){
     if(debug3) output.println();
   }
   
+  //compare1(answer, sero);
   compare2(answer, sero);
 }
 
-
+void compare1(int[] array, boolean sero){
+    for(int i=0;i<10;i++){
+      for(int j=0;j<9;j++){
+        if(sero){
+          if(heightarray[i][j]==array[j]) compare_answer[i]++;
+        }
+        else{
+          if(widtharray[i][j]==array[j]) compare_answer[i]++;
+        }
+    }
+  }
+}
 
 void compare2(int[] array, boolean sero){
     for(int i=0;i<10;i++){
@@ -452,8 +282,6 @@ void compare2(int[] array, boolean sero){
     }
   }
 }
-
-
 
 void nnsort(int[] array){
   output.print(image_name+"_answer ");
@@ -509,11 +337,6 @@ void setup(){
       if(debug2) output.print(image_name+"_sero ");
       serotracing(resizeimage);
       if(debug3) output.println();
-      //
-      rightup_line(resizeimage);
-      leftup_line(resizeimage);
-      leftdown_line(resizeimage);
-      //
       nnsort(compare_answer);
       if(debug1||debug2||debug3) output.println();
       resizeimage.save("final\\"+image_name_final);

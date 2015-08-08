@@ -1,0 +1,106 @@
+0_1.jpg_answer 0 ///2 /9 /6 /1 /4 7 //8 /5 /3 /////////////
+0_2.jpg_answer 0 ////9 /2 6 /1 /4 7 ///5 /8 ////3 ///////////
+0_3.jpg_answer 0 ////9 /2 6 /1 /4 7 ///5 /8 ////3 ///////////
+0_4.jpg_answer 0 ////9 /2 6 /1 /4 7 8 /5 ///////3 ////////
+0_5.jpg_answer 0 ////9 /2 6 /1 /4 7 ///5 /8 ////3 ///////////
+0_6.jpg_answer 0 ////9 /2 6 /1 /4 7 ///5 /8 ////3 ///////////
+1_1.jpg_answer 1 /////4 /0 ////9 /2 6 //7 //8 /5 /////3 /////
+1_2.jpg_answer 1 //0 ///2 4 /9 /6 //7 8 ///5 ///3 //////
+1_3.jpg_answer 1 /////4 /0 ////9 /2 6 //7 //8 /5 /////3 /////
+1_4.jpg_answer 1 //0 ///4 /9 /2 6 //7 //8 /5 /////3 ///////
+1_5.jpg_answer 1 //0 ///4 /9 /2 6 //7 //8 /5 /////3 ///////
+1_6.jpg_answer 0 1 ////9 /2 4 6 //7 //8 /5 /////3 ////////
+2_1.jpg_answer 2 ///0 ///6 8 /9 //1 /3 4 7 /5 //////////////
+leftupline_true
+2_2.jpg_answer 2 /////0 /3 7 //6 8 /9 //1 /4 /5 //////////
+2_3.jpg_answer 2 ///0 ///6 8 /9 //1 /3 4 7 /5 //////////////
+leftupline_true
+2_4.jpg_answer 2 /////0 /3 7 //6 8 /9 //1 /4 /5 //////////
+2_5.jpg_answer 2 ///0 ///6 8 /9 /3 /1 /4 7 /5 /////////////
+rightupline_true
+2_6.jpg_answer 6 //8 ///0 5 /2 ///1 9 /4 //7 ////3 ////
+leftupline_true
+leftdownline_true
+3_1.jpg_answer 3 //////7 //2 /9 ///8 /0 5 ///4 6 ///1 /////
+leftdownline_true
+3_2.jpg_answer 9 ///3 7 /0 5 /2 //4 6 //8 /1 ////////////
+leftupline_true
+leftdownline_true
+3_3.jpg_answer 3 ////////7 //2 /9 ///8 /0 5 ///4 6 ///1 ////
+leftdownline_true
+3_4.jpg_answer 3 /////9 /2 //7 8 /0 5 ///4 6 ///1 //////
+leftdownline_true
+3_5.jpg_answer 8 //3 /9 ///2 7 /0 5 ///4 6 /1 //////
+leftupline_true
+leftdownline_true
+3_6.jpg_answer 7 ///9 ///3 /0 5 /2 //4 6 ///1 ///8 ////////
+leftdownline_true
+4_1.jpg_answer 9 /4 //7 /0 1 5 /////2 6 8 //3 ////////
+leftdownline_true
+4_2.jpg_answer 9 ///7 /0 /4 /5 //1 /2 6 //3 //8 /////////
+leftdownline_true
+4_3.jpg_answer 9 /4 //7 /0 1 5 ///8 //2 6 //3 ///////
+4_4.jpg_answer 0 ////9 /2 6 /1 /4 7 ///5 /8 ////3 ///////////
+4_5.jpg_answer 2 ///0 ///6 8 /9 /3 /1 /4 7 /5 /////////////
+4_6.jpg_answer 8 //2 /0 ////1 9 /4 6 //3 7 /5 ////////
+rightupline_true
+leftdownline_true
+5_1.jpg_answer 5 //9 /6 //7 8 /0 /4 //2 3 /1 ///////
+rightupline_true
+leftdownline_true
+5_2.jpg_answer 5 ///6 /9 ///4 7 /0 ///2 /1 /3 8 /////
+rightupline_true
+5_3.jpg_answer 6 /////0 5 /2 //8 /9 /4 /1 /7 //3 ////
+rightupline_true
+leftdownline_true
+5_4.jpg_answer 5 //9 /6 //7 /0 /4 //2 3 ///1 /8 /////////
+rightupline_true
+leftdownline_true
+5_5.jpg_answer 5 ///6 /9 ///7 /0 /4 //2 //3 /1 ///8 ////////
+rightupline_true
+leftdownline_true
+5_6.jpg_answer 5 ///6 /9 ///7 /0 /2 4 //3 ///1 /8 /////////
+rightupline_true
+6_1.jpg_answer 6 8 ////2 /0 5 ////1 9 /4 //7 //3 /////
+6_2.jpg_answer 8 ////2 /0 ///6 /1 9 ///4 7 /5 /3 /////////
+rightupline_true
+6_3.jpg_answer 6 /////0 5 ///2 /9 /4 /1 /7 //8 ////3 ////////
+rightupline_true
+6_4.jpg_answer 6 /////0 5 ///2 /9 /4 /1 /7 //8 ////3 ////////
+rightupline_true
+6_5.jpg_answer 6 /////0 5 ///2 /9 /4 /1 /7 //8 ////3 ////////
+rightupline_true
+6_6.jpg_answer 6 ////2 /0 5 ////9 /4 8 /1 /3 7 ///////////
+leftdownline_true
+7_1.jpg_answer 9 ///7 /0 //5 /4 //2 6 /1 /3 ////8 ///////////
+leftdownline_true
+7_2.jpg_answer 9 ///7 /0 //5 /4 //2 6 /1 /3 ////8 ///////////
+leftdownline_true
+7_3.jpg_answer 9 ///2 3 7 /0 /4 /5 //1 /6 8 ////////////
+leftupline_true
+leftdownline_true
+7_4.jpg_answer 7 ///9 ////0 1 /3 4 /5 /2 //6 ////8 //////
+leftupline_true
+leftdownline_true
+7_5.jpg_answer 7 ///9 ////0 /3 /5 /2 4 //6 /1 /////8 ///////
+leftupline_true
+leftdownline_true
+7_6.jpg_answer 7 ///9 /4 ///0 1 /3 /5 /2 //6 //////8 ////
+8_1.jpg_answer 8 /0 ///2 6 /1 9 ///4 7 /5 /////3 ///////
+8_2.jpg_answer 8 //////2 /0 ///3 6 /1 9 ///4 7 /5 ///////
+8_3.jpg_answer 8 ////////2 ///0 ///3 6 /1 9 ///4 7 /5 ///////
+8_4.jpg_answer 8 ////////2 ///0 /3 //6 /1 9 ///4 7 /5 //////
+8_5.jpg_answer 8 ////////2 ///0 ///3 6 /1 9 ///4 7 /5 //////
+8_6.jpg_answer 8 ////////2 ///0 ///3 6 /1 9 ///4 7 /5 //////
+leftdownline_true
+9_1.jpg_answer 9 /2 3 //7 /0 5 ///4 6 8 ///1 ///////////
+leftdownline_true
+9_2.jpg_answer 9 ///7 /0 //5 /4 //2 6 /1 /3 ////8 ///////////
+leftdownline_true
+9_3.jpg_answer 9 ///7 /0 5 ///4 8 //2 6 /1 /3 //////////
+leftdownline_true
+9_4.jpg_answer 9 ///7 /0 /8 /5 /4 /1 /2 6 //3 //////////
+leftdownline_true
+9_5.jpg_answer 9 ///7 /0 //5 /4 //2 6 /1 /3 ////8 ///////////
+leftdownline_true
+9_6.jpg_answer 9 ///7 /0 5 ///4 8 //2 6 /1 /3 //////////
