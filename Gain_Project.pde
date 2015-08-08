@@ -9,40 +9,41 @@ int ANSWER, SCORE=0;
 
 /////////////////////////////////////////////////////////
 
-int sero =18, garo = 9;
+int sero =40, garo = 20;
 int angstrong = 1;
 
+boolean debug0 = true; // answer
 boolean debug1 = false; // first data
 boolean debug2 = true; // final
 boolean debug3 = false; // fiilzero
 boolean lets_ang = true; // don't touch
 
 ///////////////////////////////////////////////////
-
+// 0,7,9 need classification
 
 int[][] heightarray = // sero
 {{0,0,0,1,2,1,0,0,0}, //0
- {0,0,0,0,1,0,0,0,0},
- {0,0,0,1,3,1,0,0,0}, //2
- {0,0,1,3,4,3,1,0,0},
+ {0,0,0,0,1,0,0,0,0}, //1
+ {0,0,0,2,3,2,1,0,0}, //2
+ {0,0,1,3,4,3,1,0,0}, //3
  {0,0,0,0,1,0,0,0,0}, //4
- {0,0,0,2,3,0,0,0,0},
+ {0,0,0,1,3,1,0,0,0}, //5
  {0,0,0,1,3,1,0,0,0}, //6
- {0,0,0,1,2,1,0,0,0},
- {0,0,0,1,4,3,1,0,0}, //8
- {0,0,0,1,2,1,0,0,0}
+ {0,0,0,1,2,1,0,0,0}, //7
+ {0,0,0,2,4,3,1,0,0}, //8
+ {0,0,0,1,2,1,0,0,0}  //9
 };
 
 int[][] widtharray = // garo
-{{0,0,0,1,2,1,0,0,0}, 
+{{0,0,0,1,2,1,0,0,0}, //0
  {0,0,0,0,1,0,0,0,0}, //1
- {0,0,0,1,2,1,0,0,0}, 
+ {0,0,0,1,2,1,0,0,0}, //2
  {0,0,0,1,2,1,0,0,0}, //3
- {0,0,0,0,2,1,0,0,0},
- {0,0,0,0,1,0,0,0,0}, //5
- {0,0,0,1,2,1,0,0,0},
+ {0,0,0,0,2,1,0,0,0}, //4
+ {0,0,0,1,3,1,0,0,0}, //5
+ {0,0,0,1,2,1,0,0,0}, //6
  {0,0,0,1,2,1,0,0,0}, //7
- {0,0,1,2,1,2,1,0,0},
+ {0,0,1,2,1,2,1,0,0}, //8
  {0,0,0,1,2,1,0,0,0}  //9
 };
 
@@ -298,9 +299,9 @@ void nnsort(int[] array){
   
   for(;max>0;max--){
     for(int i=0;i<10;i++){
-      if(array[i]==max) output.print(i+" " );
+      if(array[i]==max) if(debug0) output.print(i+" " );
     }
-    output.print("/");
+    if(debug0) output.print("/");
   }
   output.println();
   
@@ -329,7 +330,7 @@ void setup(){
       recolor(cropimage,120);
       cropimage.resize(garo,sero);
       resizeimage=cropimage;
-      recolor(resizeimage,200);
+      recolor(resizeimage,40);
       if(debug2) output.print(image_name+"_garo ");
       garotracing(resizeimage);
       if(debug3) output.println();
