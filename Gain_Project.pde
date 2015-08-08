@@ -15,11 +15,11 @@ int angstrong = 1;
 
 int line_threshold = 1;
 
-boolean debug0 = true; // answer
+boolean debug0 = false; // answer
 boolean debug1 = false; // first data
 boolean debug2 = false; // final
 boolean debug3 = false; // fiilzero
-boolean debugline = true; // line functions
+boolean debugline = false; // line functions
 boolean lets_ang = true; // don't touch
 
 ///////////////////////////////////////////////////
@@ -64,6 +64,24 @@ int[] leftdownline = {-2,-2,-2,2,0,2,-2,2,-2,2};
 int location(int Garo, int Sero){
   return (Garo + Sero * (garo)); 
 }
+/////////////////////////////////////////////////////////////////////
+//////////////////// Classification by Shape ///////////////////////
+
+void classify_one(PImage img){
+  int loc, area=0;
+  for(int i = 0; i<sero; i++){
+    for(int j = 0; j<garo; j++){
+      loc = location(j,i);
+      
+      if(red(img.pixels[loc]) == 0){
+        area++;   
+      }
+    }
+  }
+  double area_percent = area*100 / sero / garo;
+  if(area_percent > 60) compare_answer[1] += 5;
+}
+
 
 //////////////////////////////////////////////////////////////////
 /////////////////// Classification by Space ////////////////////// 
@@ -458,6 +476,7 @@ void compare2(int[] array, boolean sero){
 void nnsort(int[] array){
   output.print(image_name+"_answer ");
   int max = 0;
+  boolean ang = false;
   
   for(int i=0;i<10;i++){
     if(array[i]>max){
@@ -466,14 +485,27 @@ void nnsort(int[] array){
   }
   
   for(int i =0; i<10; i++){
-    if(array[i] == max && i == ANSWER) SCORE++; 
+    if(array[i] == max && i == ANSWER) {
+      SCORE++;
+      println(" Correct!");
+      break;
+    }
+    if(i==9) println(" Wrong!");
   }
   
-  for(;max>0;max--){
-    for(int i=0;i<10;i++){
-      if(array[i]==max) if(debug0) output.print(i+" " );
+  if(debug0){
+    for(;max>0;max--){
+      for(int i=0;i<10;i++){
+        if(array[i]==max) output.print(i+" " );
+      }
+      output.print("/");
     }
-    if(debug0) output.print("/");
+  }else for(int i = 0; i<10; i++){
+    if(array[i] == max){
+      if(ang) output.print(" or ");
+      output.print(i);
+      ang = true;
+    }
   }
   output.println();
   
@@ -510,14 +542,18 @@ void setup(){
       serotracing(resizeimage);
       if(debug3) output.println();
       //
+      classify_one(resizeimage);
       rightup_line(resizeimage);
       leftup_line(resizeimage);
       leftdown_line(resizeimage);
       //
+    
+      resizeimage.save("final\\"+image_name_final);
+      print(image_name_final+" done!");
+      
       nnsort(compare_answer);
       if(debug1||debug2||debug3) output.println();
-      resizeimage.save("final\\"+image_name_final);
-      println(image_name_final+" done!");
+      
       for(int k = 0; k<10; k++){
         compare_answer[k]=0; 
       }
@@ -537,8 +573,8 @@ void setup(){
   output.close();
   boyoung.resize(displayWidth-100,displayHeight-100);
   size(displayWidth-100,displayHeight-100);
-  
-  double percent = SCORE*100 / (ANSWER*j-6);
+  println(SCORE);
+  double percent = SCORE*100 / (ANSWER*(j-1));
   println(percent+"%");
   background(boyoung);
 }
