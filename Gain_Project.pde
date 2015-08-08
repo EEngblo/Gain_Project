@@ -2,17 +2,26 @@ PImage getimage,cropimage,resizeimage,boyoung;
 PrintWriter output;
 int Max_Arr=9;
 int x=0,y=0,w=0,h=0,offset=80;
-int sero =16, garo = 8;
-int angstrong = 1;
 String image_name_final;
 String image_name;
 int[] compare_answer = new int[10];
-boolean debug = true;
-boolean lets_ang = true; // don't touch
 int ANSWER, SCORE=0;
 
-int[][] heightarray =
-{{0,0,0,1,2,1,0,0,0}, //0
+/////////////////////////////////////////////////////////
+
+int sero =18, garo = 9;
+int angstrong = 1;
+
+boolean debug1 = false; // first data
+boolean debug2 = true; // final
+boolean debug3 = false; // fiilzero
+boolean lets_ang = true; // don't touch
+
+///////////////////////////////////////////////////
+
+
+int[][] heightarray = // sero
+{{0,0,0,0,2,0,0,0,0}, //0
  {0,0,0,0,1,0,0,0,0},
  {0,0,0,1,3,1,0,0,0}, //2
  {0,0,1,3,4,3,1,0,0},
@@ -24,7 +33,7 @@ int[][] heightarray =
  {0,0,1,2,3,1,0,0,0}
 };
 
-int[][] widtharray =
+int[][] widtharray = // garo
 {{0,0,0,1,2,1,0,0,0}, 
  {0,0,0,0,1,0,0,0,0}, //1
  {0,0,0,1,2,1,0,0,0}, 
@@ -49,8 +58,8 @@ void garotracing(PImage img){
       else ang = 0;
       if(ang==1 && prev_ang!=ang) widthimage[i]++;
     }
-    if(debug) output.print(widthimage[i]);
-    if(debug)output.print(" ");
+    if(debug2) output.print(widthimage[i]);
+    if(debug2)output.print(" ");
   }
   array_churry_garo(widthimage);
 }
@@ -67,8 +76,8 @@ void serotracing(PImage img){
       else ang = 0;
       if(ang==1 && prev_ang!=ang) heightimage[i]++;
     }
-    if(debug)output.print(heightimage[i]);
-    if(debug)output.print(" ");
+    if(debug2)output.print(heightimage[i]);
+    if(debug2)output.print(" ");
   }
   array_churry_sero(heightimage);
 }
@@ -85,8 +94,8 @@ void array_churry_garo(int[] array){
   int[] ANG = new int[angstrong+1];
   int[] answer1 = new int[sero];
   int[] answer2 = new int[sero];
-  if(debug) output.println();
-  if(debug) output.print(image_name+"_garo_final ");
+  if(debug2) output.println();
+  if(debug1) output.print(image_name+"_garo_final ");
   
   //answer1[0] = 1;
   //answer1[j] = 1;
@@ -136,10 +145,10 @@ void array_churry_garo(int[] array){
  }
     
   for(k=0;answer2[k]!=0;k++) {
-     if(debug) output.print(answer2[k]);
-     if(debug) output.print(" "); 
+     if(debug1) output.print(answer2[k]);
+     if(debug1) output.print(" "); 
    }
-   if(debug) output.println();
+   if(debug1) output.println();
    
    fillzero(answer2, false);
 }
@@ -151,8 +160,8 @@ void array_churry_sero(int[] array){
   int[] ANG = new int[angstrong+1];
   int[] answer1 = new int[garo];
   int[] answer2 = new int[garo];
-  if(debug) output.println();
-  if(debug) output.print(image_name+"_sero_final ");
+  if(debug2) output.println();
+  if(debug1) output.print(image_name+"_sero_final ");
   
   
   
@@ -201,10 +210,10 @@ void array_churry_sero(int[] array){
  }
  
   for(k=0;answer2[k]!=0;k++) {
-    if(debug) output.print(answer2[k]);
-    if(debug) output.print(" "); 
+    if(debug1) output.print(answer2[k]);
+    if(debug1) output.print(" "); 
    }
-   if(debug) output.println();
+   if(debug1) output.println();
    
    fillzero(answer2, true);
 }
@@ -232,14 +241,14 @@ void fillzero(int[] array, boolean sero){
   
   
   if(sero){
-    if(debug) output.print(image_name+"_sero_fillzero ");
-    for(int i=0;i<9;i++){ if(debug) output.print(answer[i]+" ");}
-    if(debug) output.println();
+    if(debug3) output.print(image_name+"_sero_fillzero ");
+    for(int i=0;i<9;i++){ if(debug3) output.print(answer[i]+" ");}
+    if(debug3) output.println();
   }
   else{
-    if(debug) output.print(image_name+"_garo_fillzero ");
-    for(int i=0;i<9;i++){if(debug)  output.print(answer[i]+" ");}
-    if(debug) output.println();
+    if(debug3) output.print(image_name+"_garo_fillzero ");
+    for(int i=0;i<9;i++){if(debug3)  output.print(answer[i]+" ");}
+    if(debug3) output.println();
   }
   
   //compare1(answer, sero);
@@ -321,14 +330,14 @@ void setup(){
       cropimage.resize(garo,sero);
       resizeimage=cropimage;
       recolor(resizeimage,200);
-      if(debug) output.print(image_name+"_garo ");
+      if(debug2) output.print(image_name+"_garo ");
       garotracing(resizeimage);
-      if(debug==false) output.println();
-      if(debug) output.print(image_name+"_sero ");
+      if(debug2) output.println();
+      if(debug2) output.print(image_name+"_sero ");
       serotracing(resizeimage);
-      if(debug==false) output.println();
+      if(debug2) output.println();
       nnsort(compare_answer);
-      if(!debug) output.println();
+      if(debug1||debug2) output.println();
       resizeimage.save("final\\"+image_name_final);
       println(image_name_final+" done!");
       for(int k = 0; k<10; k++){
