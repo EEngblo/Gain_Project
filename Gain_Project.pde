@@ -15,11 +15,12 @@ int angstrong = 1;
 
 int line_threshold = 1;
 
-boolean debug0 = false; // answer
+boolean debug0 = true; // answer
 boolean debug1 = false; // first data
 boolean debug2 = false; // final
 boolean debug3 = false; // fiilzero
 boolean debugline = false; // line functions
+boolean debugnumber = true; // shape functions
 boolean lets_ang = true; // don't touch
 
 ///////////////////////////////////////////////////
@@ -67,6 +68,44 @@ int location(int Garo, int Sero){
 /////////////////////////////////////////////////////////////////////
 //////////////////// Classification by Shape ///////////////////////
 
+void classify_zero(PImage img){
+  int j,loc, answer = 0;
+  int seed_sero = sero/3;
+  int seed_garo = garo/3;
+  boolean ang = true;
+  
+  for(int i = seed_garo; i<garo*2/3; i++){
+    for(j = seed_sero; j<sero*3/4; j++){
+       loc = location(i,j);
+       if(red(img.pixels[loc]) == 0){
+         ang = false;
+         break;
+       }
+    }
+    if(ang){
+      for(; j<sero; j++){
+        loc = location(i,j);
+        if(red(img.pixels[loc]) == 0){
+          ang = true;
+          break;
+        }
+        ang = false;
+      }
+    }
+    if(ang) answer++;
+    ang = true;
+  }
+  
+  if(answer >= garo/4) {
+    for(int i = 0 ; i<10; i++){
+      if (i!=0) compare_answer[i] -= 2; 
+    }
+    compare_answer[0] += 3;
+    if(debugnumber) output.println("maybe 0!");
+  } 
+  else compare_answer[0] -= 10;
+}
+
 void classify_one(PImage img){
   int loc, area=0;
   for(int i = 0; i<sero; i++){
@@ -79,8 +118,45 @@ void classify_one(PImage img){
     }
   }
   double area_percent = area*100 / sero / garo;
-  if(area_percent > 60) compare_answer[1] += 5;
+  if(area_percent > 50) {
+    for(int i = 0 ; i<10; i++){
+      if (i!=1) compare_answer[i] -= 2; 
+    }
+    compare_answer[1] += 3;
+    if(debugnumber) output.println("maybe 1!");
+  }
+  else compare_answer[1] -= 10;
 }
+
+void classify_seven(PImage img){
+  int loc, answer = 0;
+  int seed_sero = sero/5;
+  int seed_garo = 0;
+  boolean ang = true;
+  
+  for(int i = seed_garo; i<garo*2/3; i++){
+    for(int j = seed_sero; j<sero; j++){
+      loc = location(i,j);
+      if(red(img.pixels[loc]) == 0){
+        ang = false;
+        break;
+      }
+    }
+    if(ang) answer++;
+    ang = true;
+  }
+  
+  if(answer >= garo/4){
+    for(int i = 0 ; i<10; i++){
+      if (i!=7) compare_answer[i] -= 2; 
+    }
+    compare_answer[7] += 3;
+    if(debugnumber) output.println("maybe 7!");
+  }
+  else compare_answer[7] -= 10;
+}
+
+
 
 
 //////////////////////////////////////////////////////////////////
@@ -543,6 +619,8 @@ void setup(){
       if(debug3) output.println();
       //
       classify_one(resizeimage);
+      classify_zero(resizeimage);
+      classify_seven(resizeimage);
       rightup_line(resizeimage);
       leftup_line(resizeimage);
       leftdown_line(resizeimage);
@@ -573,7 +651,7 @@ void setup(){
   output.close();
   boyoung.resize(displayWidth-100,displayHeight-100);
   size(displayWidth-100,displayHeight-100);
-  println(SCORE);
+
   double percent = SCORE*100 / (ANSWER*(j-1));
   println(percent+"%");
   background(boyoung);

@@ -1,0 +1,146 @@
+0_1.jpg_answer 0
+rightdownline_true
+0_2.jpg_answer 0
+0_3.jpg_answer 0
+rightdownline_true
+0_4.jpg_answer 0
+0_5.jpg_answer 0
+0_6.jpg_answer 0
+rightdownline_true
+1_1.jpg_answer 1
+1_2.jpg_answer 1
+1_3.jpg_answer 1
+1_4.jpg_answer 1
+1_5.jpg_answer 1
+rightdownline_true
+1_6.jpg_answer 1
+leftupline_true
+rightdownline_true
+leftdownline_true
+2_1.jpg_answer 2
+leftupline_true
+rightdownline_true
+leftdownline_true
+2_2.jpg_answer 2
+leftupline_true
+rightdownline_true
+2_3.jpg_answer 2
+leftupline_true
+rightdownline_true
+2_4.jpg_answer 2
+rightdownline_true
+leftdownline_true
+2_5.jpg_answer 2 or 9
+rightupline_true
+rightdownline_true
+2_6.jpg_answer 6
+leftupline_true
+leftdownline_true
+3_1.jpg_answer 3
+leftupline_true
+leftdownline_true
+3_2.jpg_answer 3
+leftupline_true
+leftdownline_true
+3_3.jpg_answer 3
+leftupline_true
+rightdownline_true
+leftdownline_true
+3_4.jpg_answer 3
+leftupline_true
+leftdownline_true
+3_5.jpg_answer 3
+leftupline_true
+rightdownline_true
+leftdownline_true
+3_6.jpg_answer 2
+rightdownline_true
+leftdownline_true
+4_1.jpg_answer 4
+rightdownline_true
+leftdownline_true
+4_2.jpg_answer 4
+rightdownline_true
+leftdownline_true
+4_3.jpg_answer 4
+rightdownline_true
+leftdownline_true
+4_4.jpg_answer 9
+rightdownline_true
+leftdownline_true
+4_5.jpg_answer 2 or 9
+rightdownline_true
+leftdownline_true
+4_6.jpg_answer 4
+rightupline_true
+leftdownline_true
+5_1.jpg_answer 5
+rightupline_true
+leftdownline_true
+5_2.jpg_answer 5
+rightupline_true
+5_3.jpg_answer 6
+rightupline_true
+leftdownline_true
+5_4.jpg_answer 5
+rightupline_true
+leftdownline_true
+5_5.jpg_answer 5
+rightupline_true
+leftdownline_true
+5_6.jpg_answer 5
+rightupline_true
+6_1.jpg_answer 6
+rightdownline_true
+6_2.jpg_answer 8
+rightupline_true
+6_3.jpg_answer 6
+rightupline_true
+6_4.jpg_answer 6
+rightupline_true
+6_5.jpg_answer 6
+rightupline_true
+rightdownline_true
+6_6.jpg_answer 6
+rightdownline_true
+leftdownline_true
+7_1.jpg_answer 7
+leftdownline_true
+7_2.jpg_answer 7
+leftupline_true
+leftdownline_true
+7_3.jpg_answer 7
+leftupline_true
+rightdownline_true
+leftdownline_true
+7_4.jpg_answer 7
+leftupline_true
+rightdownline_true
+leftdownline_true
+7_5.jpg_answer 7
+leftupline_true
+leftdownline_true
+7_6.jpg_answer 7
+8_1.jpg_answer 8
+8_2.jpg_answer 8
+8_3.jpg_answer 8
+8_4.jpg_answer 8
+8_5.jpg_answer 8
+8_6.jpg_answer 8
+rightdownline_true
+leftdownline_true
+9_1.jpg_answer 2 or 9
+leftdownline_true
+9_2.jpg_answer 9
+leftupline_true
+rightdownline_true
+leftdownline_true
+9_3.jpg_answer 4
+leftupline_true
+leftdownline_true
+9_4.jpg_answer 9
+leftupline_true
+leftdownline_true
+9_5.jpg_answer 9
+leftdownline_true
+9_6.jpg_answer 9
