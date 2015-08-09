@@ -6,6 +6,7 @@ String image_name_final;
 String image_name;
 int[] compare_answer = new int[10];
 int ANSWER, SCORE=0;
+boolean lu, ld, ru, rd;
 
 /////////////////////////////////////////////////////////
 /////////////////////// Settings //////////////////////////
@@ -13,14 +14,14 @@ int ANSWER, SCORE=0;
 int sero =40, garo = 20;
 int angstrong = 1;
 
-int line_threshold = 1;
+int line_threshold = 2;
 
-boolean debug0 = true; // answer
-boolean debug1 = false; // first data
-boolean debug2 = false; // final
+boolean debug0 = false; // answer
+boolean debug1 = false; // final data
+boolean debug2 = false; // first data
 boolean debug3 = false; // fiilzero
-boolean debugline = false; // line functions
-boolean debugnumber = true; // shape functions
+boolean debugline = true; // line functions
+boolean debugnumber = false; // shape functions
 boolean lets_ang = true; // don't touch
 
 ///////////////////////////////////////////////////
@@ -32,7 +33,7 @@ int[][] heightarray = // sero
 {{0,0,0,1,2,1,0,0,0}, //0
  {0,0,0,0,1,0,0,0,0}, //1
  {0,0,0,2,3,2,1,0,0}, //2
- {0,0,1,3,4,3,1,0,0}, //3
+ {0,0,0,3,4,3,1,0,0}, //3
  {0,0,0,0,1,0,0,0,0}, //4
  {0,0,0,1,3,1,0,0,0}, //5
  {0,0,0,1,3,1,0,0,0}, //6
@@ -46,7 +47,7 @@ int[][] widtharray = // garo
  {0,0,0,0,1,0,0,0,0}, //1
  {0,0,0,1,2,1,0,0,0}, //2
  {0,0,0,1,2,1,0,0,0}, //3
- {0,0,0,0,2,1,0,0,0}, //4
+ {0,0,0,2,3,2,1,0,0}, //4
  {0,0,0,1,3,1,0,0,0}, //5
  {0,0,0,1,2,1,0,0,0}, //6
  {0,0,0,1,2,1,0,0,0}, //7
@@ -54,10 +55,49 @@ int[][] widtharray = // garo
  {0,0,0,1,2,1,0,0,0}  //9
 };
 
-int[] leftupbox = {0,0,0,0,0,0,0,0,0,0};
+void logic_line(){
+  
+  // 0,1,8
+  if(ru == false && rd == false && lu == false && ld == false){
+    compare_answer[0] += 2; compare_answer[1] += 2; compare_answer[8] += 2;
+  }
+  
+  // 2
+  if(rd == true && lu == true && ru == false){
+    compare_answer[2] += 2;
+  }
+  
+  // 3
+  if(ru == true && rd == true){
+    compare_answer[3] += 2;
+  }
+  
+  // 4
+  if(rd == true && ld == true && lu == false){
+    compare_answer[4] += 3; 
+  }
+  
+  // 5
+  if(ru == true && ld == true){
+    compare_answer[5] += 2; 
+  }
+  
+  // 6
+  if(ru == true && lu == false && ld == false){
+    compare_answer[6] += 2; 
+  }
+  
+  // 7,9
+  if(ld == true && ru == false && rd == false){
+    compare_answer[7] += 2; compare_answer[9] += 2;
+  }
+}
+
+
 int[] rightupline = {-2,-2,-2,-2,-2,2,2,-2,-2,-2};
-int[] leftupline = {-2,-2,-1,2,-2,-2,-2,2,-2,-2};
-int[] leftdownline = {-2,-2,-2,2,0,2,-2,2,-2,2};
+int[] leftupline = {-2,-2,2,2,-2,-2,-2,2,-2,-2};
+int[] rightdownline = {-2,-2,2,-2,2,-2,-2,0,-2,-2};
+int[] leftdownline = {-2,-2,-2,2,2,2,-2,2,-2,2};
 
 ////////////////////////////////////////////////////////////////////
 ////////////////////// Functions for Convenience ///////////////////
@@ -65,6 +105,7 @@ int[] leftdownline = {-2,-2,-2,2,0,2,-2,2,-2,2};
 int location(int Garo, int Sero){
   return (Garo + Sero * (garo)); 
 }
+
 /////////////////////////////////////////////////////////////////////
 //////////////////// Classification by Shape ///////////////////////
 
@@ -125,7 +166,7 @@ void classify_one(PImage img){
     compare_answer[1] += 3;
     if(debugnumber) output.println("maybe 1!");
   }
-  else compare_answer[1] -= 10;
+  // else compare_answer[1] -= 10;
 }
 
 void classify_seven(PImage img){
@@ -150,7 +191,7 @@ void classify_seven(PImage img){
     for(int i = 0 ; i<10; i++){
       if (i!=7) compare_answer[i] -= 2; 
     }
-    compare_answer[7] += 3;
+    compare_answer[7] += 5;
     if(debugnumber) output.println("maybe 7!");
   }
   else compare_answer[7] -= 10;
@@ -197,10 +238,12 @@ void rightup_line(PImage img){
   
   if(answer >= line_threshold){
     if(debugline) output.println("rightupline_true");
+    ru = true;
     for(int i = 0; i<10; i++){
       compare_answer[i] += rightupline[i];
     }
   } else{
+    ru = false;
     for(int i = 0; i<10; i++){
       compare_answer[i] -= rightupline[i];
     }
@@ -241,10 +284,12 @@ void leftup_line(PImage img){
   
   if(answer >= line_threshold){
     if(debugline) output.println("leftupline_true");
+    lu = true;
     for(int i = 0; i<10; i++){
       compare_answer[i] += leftupline[i];
     }
   } else{
+    lu = false;
     for(int i = 0; i<10; i++){
       compare_answer[i] -= leftupline[i];
     }
@@ -254,7 +299,7 @@ void leftup_line(PImage img){
 
 void leftdown_line(PImage img){
   int seed_sero = sero * 3 / 4;
-  int seed_garo = garo / 2;
+  int seed_garo = garo / 3;
   int answer = 0, loc;
   boolean ang=true;
   
@@ -285,16 +330,66 @@ void leftdown_line(PImage img){
   
   if(answer >= line_threshold){
     if(debugline) output.println("leftdownline_true");
+    ld = true;
     for(int i = 0; i<10; i++){
       compare_answer[i] += leftdownline[i];
     }
   } else{
+    ld = false;
     for(int i = 0; i<10; i++){
       compare_answer[i] -= leftdownline[i];
     }
   }
   
 }
+
+void rightdown_line(PImage img){
+  int seed_sero = sero * 3 / 4;
+  int seed_garo = garo * 3 / 4;
+  int answer = 0, loc;
+  boolean ang=true;
+  
+  for(int i = seed_sero; i>sero/2; i--){
+     for(int j = seed_garo; j<garo; j++){
+       loc = location(j,i);
+       if(red(img.pixels[loc]) == 0){
+        ang = false;
+         break;
+       }
+     }
+     if(ang) answer++;
+     ang = true;
+  }
+  
+  
+  for(int i = seed_sero; i<sero*7/8; i++){
+     for(int j = seed_garo; j<garo; j++){
+       loc = location(j,i);
+       if(red(img.pixels[loc]) == 0){
+         ang = false;
+         break;
+       }
+     }
+     if(ang) answer++;
+     ang = true;
+  }
+  
+  if(answer >= line_threshold){
+    if(debugline) output.println("rightdownline_true");
+    rd = true;
+    for(int i = 0; i<10; i++){
+      compare_answer[i] += rightdownline[i];
+    }
+  } else{
+    rd = false;
+    for(int i = 0; i<10; i++){
+      compare_answer[i] -= rightdownline[i];
+    }
+  }
+  
+}
+
+
 
 void fill_leftupbox(PImage img){
   int i, loc;
@@ -597,20 +692,20 @@ void setup(){
   String sec = Integer.toString(second());
   output = createWriter("log\\"+day+"_"+hour+"_"+m+"_"+sec+".txt");
   for(ANSWER=0;ANSWER<10;ANSWER++){
-    for(j=1;j<=6;j++){
+    for(j=1;j<=8;j++){
       //if((ANSWER==1||ANSWER==2)&&(j==7||j==8)) continue;
       //if(ANSWER==7&&(j==5||j==6)) continue;
       String i_s=Integer.toString(ANSWER);
       String j_s=Integer.toString(j);
       image_name=i_s+"_"+j_s+".jpg";
       image_name_final=i_s+"_"+j_s+".png";
-      getimage = loadImage(image_name);
+      getimage = loadImage("image2\\"+image_name);
       getxywh(getimage);
       cropimage = getimage.get(x,y,w,h);
-      recolor(cropimage,120);
+      recolor(cropimage,90); // image1 = 120, image2 = 90 
       cropimage.resize(garo,sero);
       resizeimage=cropimage;
-      recolor(resizeimage,40);
+      recolor(resizeimage,150); // image1 = 40, image2 = 150
       if(debug2) output.print(image_name+"_garo ");
       garotracing(resizeimage);
       if(debug3) output.println();
@@ -623,7 +718,9 @@ void setup(){
       classify_seven(resizeimage);
       rightup_line(resizeimage);
       leftup_line(resizeimage);
+      rightdown_line(resizeimage);
       leftdown_line(resizeimage);
+      logic_line();
       //
     
       resizeimage.save("final\\"+image_name_final);
